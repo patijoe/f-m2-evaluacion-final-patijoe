@@ -43,9 +43,13 @@ function createElement (arr) {
     newTitle.classList.add('item__title');
 
     // Creo contenido de la imagen
-    const newImgContent = arr[i].show.image.medium;
-    newImg.src = newImgContent;
-    console.log('__**__', newImgContent)
+    const newImgContent = arr[i].show.image;
+    console.log('__**__', newImgContent);
+    if (newImgContent === null) {
+      newImg.src = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
+    } else {
+      newImg.src = newImgContent.medium;
+    }
 
     // Creo contenido del título
     const newTextContent = document.createTextNode(arr[i].show.name);
