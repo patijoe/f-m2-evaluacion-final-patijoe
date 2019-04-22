@@ -26,12 +26,6 @@ function read () {
       }
     }
     createElement(data);
-
-    // for (let j=0; j<data.length; j++) {
-    //   const newTextContent = document.createTextNode(data[j].show.name);
-    //   item__title.innerHTML = newTextContent;
-    // }
-    
   });
 }
 
@@ -48,10 +42,10 @@ function createElement (arr) {
     const newTitle = document.createElement('h2');
     newTitle.classList.add('item__title');
 
-    // // Creo contenido de la imagen
-    // const newImgContent = document.createTextNode(arr[i].show.url);
-    // newImg.setAttribute('src', newImgContent);
-    // console.log('__**__', newImgContent)
+    // Creo contenido de la imagen
+    const newImgContent = arr[i].show.image.medium;
+    newImg.src = newImgContent;
+    console.log('__**__', newImgContent)
 
     // Creo contenido del título
     const newTextContent = document.createTextNode(arr[i].show.name);
