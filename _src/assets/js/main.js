@@ -14,18 +14,18 @@ function read () {
   .then(data => {
    
     // console.log('_^_', data);
-    let filteredTitles = [];
-    for (let i = 0; i<data.length; i++) {
-      
-      const title = data[i].show.name;
-      if (title.match(field.value)) {
-        filteredTitles.push(data[i].show.name);
-      }
-    }
+    // let filteredTitles = [];
+    // for (let i = 0; i<data.length; i++) {
+    //   const title = data[i].show.name;
+    //   if (title.match(field.value)) {
+    //     filteredTitles.push(data[i].show.name);
+    //   }
+    // }
     createElement(data);
 
     const itemSelected = document.querySelectorAll('.item__list');
     for (let i = 0; i < itemSelected.length; i++) {
+      
       itemSelected[i].addEventListener('click', select);
       itemSelected[i].addEventListener('click', () => {createElementFavorite(favorites)});
     }
@@ -69,6 +69,7 @@ function createElement (arr) {
 
 // FAVORITES. Función que me crea tanto li como elementos tenga el array y su contenido
 function createElementFavorite (arr) {
+  removeIniFav ()
   
   for (let i = 0; i<arr.length; i++) {
     // Creo elementos
@@ -100,28 +101,27 @@ function createElementFavorite (arr) {
  
 }
 
-// Función que me define donde ocurre el evento y me cambia la clase
+// Creo array favorites donde se almacenan las selecionadas
 let favorites = [];
 
 function select (event) {
+  // Origen del evento
   let culpable = event.currentTarget;
-  
+  // al culpable le cambio la clase
   culpable.classList.toggle('item__list2');
-
+  // Añado culpable a favorites
   favorites.push(culpable);
   console.dir(favorites);
 }
 
-// // Función que me elimina la busqueda anterior
+// Función que me elimina la busqueda anterior
 function remove () {
   list.innerHTML = '';
 }
 
+// Función que me elimina la busqueda anterior
+function removeIniFav () {
+  listFav.innerHTML = '';
+}
+
 btn.addEventListener('click', read);
-
-
-// let array = [];
-// function add (arr) {
-//   array.push('hola');
-//   console.log(array);
-// }
