@@ -66,36 +66,38 @@ function createElement (arr) {
 // FAVORITES. Función que me crea tanto li como elementos tenga el array y su contenido
 function createElementFavorite (arr) {
   removeIniFav ()
+  if (favorites === null) {
+    favorites = [];
+  } else {
+    for (let i = 0; i<arr.length; i++) {
+      // Creo elementos a partir del array favorites, que tiene almacenado el objeto SeriesInfo
+      const newItemFav = document.createElement('li');
+      newItemFav.classList.add ('item__list-fav');
+      const newImgFav = document.createElement('img');
+      newImgFav.classList.add('item__img-fav');
+      const newTitleFav = document.createElement('h2');
+      newTitleFav.classList.add('item__title-fav');
   
-  for (let i = 0; i<arr.length; i++) {
-    // Creo elementos a partir del array favorites, que tiene almacenado el objeto SeriesInfo
-    const newItemFav = document.createElement('li');
-    newItemFav.classList.add ('item__list-fav');
-    const newImgFav = document.createElement('img');
-    newImgFav.classList.add('item__img-fav');
-    const newTitleFav = document.createElement('h2');
-    newTitleFav.classList.add('item__title-fav');
-
-    // Creo contenido de la imagen a partir del array favorites y del objeto seriesInfo que contien
-    const newImgContentFav = arr[i].img;
-    console.log('__**__', newImgContentFav);
-
-    if (newImgContentFav === null) {
-      newImgFav.src = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
-    } else {
-      newImgFav.src = newImgContentFav;
+      // Creo contenido de la imagen a partir del array favorites y del objeto seriesInfo que contien
+      const newImgContentFav = arr[i].img;
+      console.log('__**__', newImgContentFav);
+  
+      if (newImgContentFav === null) {
+        newImgFav.src = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
+      } else {
+        newImgFav.src = newImgContentFav;
+      }
+  
+      // Creo contenido del título
+      const newTextContentFav = document.createTextNode(arr[i].name);
+  
+      // Meto cada elemento donde coresponde
+      newTitleFav.appendChild(newTextContentFav);
+      newItemFav.appendChild(newTitleFav);
+      newItemFav.appendChild(newImgFav);
+      listFav.appendChild(newItemFav);
     }
-
-    // Creo contenido del título
-    const newTextContentFav = document.createTextNode(arr[i].name);
-
-    // Meto cada elemento donde coresponde
-    newTitleFav.appendChild(newTextContentFav);
-    newItemFav.appendChild(newTitleFav);
-    newItemFav.appendChild(newImgFav);
-    listFav.appendChild(newItemFav);
   }
- 
 }
 
 function select (event) {

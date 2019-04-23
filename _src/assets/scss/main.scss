@@ -1,14 +1,45 @@
 body {
 	height: 100vh;
+	background-color: silver;
 }
 
 .container {
 	display: flex;
+	justify-content: space-between;
+	margin: 100px 200px;
+}
+
+.main-title {
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 500;
+	font-size: 60px;
+	margin: 100px 0 0 100px;
 }
 
 .favorites_block {
 	display: flex;
 	flex-direction: column;
+}
+
+.list {
+	list-style: none;
+}
+
+.list__favorites {
+	list-style: none;
+}
+
+.field {
+	width: 50%;
+	height: 20px;
+	border-radius: 5px;
+}
+
+.btn {
+	height: 20px;
+	margin-left: 20px; 
+	border-radius: 5px;
+	font-family: 'Quicksand', sans-serif;
 }
 
 .item__img {
@@ -21,6 +52,8 @@ body {
 	background-color: white;
 	text-align: center;
 	.item__title {
+		font-family: 'Quicksand', sans-serif;
+		font-weight: 500;
 		color:grey;
 	}
 }
@@ -31,6 +64,8 @@ body {
 	background-color: grey;
 	text-align: center;
 	.item__title {
+		font-family: 'Quicksand', sans-serif;
+		font-weight: 500;
 		color:white;
 	}
 }
