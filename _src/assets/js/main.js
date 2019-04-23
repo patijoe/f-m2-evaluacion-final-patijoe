@@ -5,12 +5,10 @@ const btn = document.querySelector('.btn');
 const list = document.querySelector('.list');
 const listFav = document.querySelector('.list__favorites');
 // Creo array favorites donde se almacenan las selecionadas
-let favorites = [];
+let favorites = JSON.parse(localStorage.getItem('favorites'));
+console.log('mmm', favorites);
 
-const savedFavorites = JSON.parse(localStorage.getItem('favorites'));
-console.log('mmm', savedFavorites);
-
-createElementFavorite(savedFavorites);
+createElementFavorite(favorites);
 
 
 function read () {
