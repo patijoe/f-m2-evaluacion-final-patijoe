@@ -109,6 +109,15 @@ function select (event) {
 
   // Añado el objeto seriesInfo a favorites
   favorites.push(seriesInfo);
+
+  saveLocalStorage(favorites);
+}
+
+const savedFavorites = JSON.parse(localStorage.getItem('favorites'));
+console.log('mmm', savedFavorites);
+
+function saveLocalStorage (arr) {
+  localStorage.setItem('favorites', JSON.stringify(arr));
 }
 
 // Función que me elimina la busqueda anterior
