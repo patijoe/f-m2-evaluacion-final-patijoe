@@ -7,6 +7,11 @@ const listFav = document.querySelector('.list__favorites');
 // Creo array favorites donde se almacenan las selecionadas
 let favorites = [];
 
+const savedFavorites = JSON.parse(localStorage.getItem('favorites'));
+console.log('mmm', savedFavorites);
+
+createElementFavorite(savedFavorites);
+
 
 function read () {
   remove();
@@ -113,8 +118,7 @@ function select (event) {
   saveLocalStorage(favorites);
 }
 
-const savedFavorites = JSON.parse(localStorage.getItem('favorites'));
-console.log('mmm', savedFavorites);
+
 
 function saveLocalStorage (arr) {
   localStorage.setItem('favorites', JSON.stringify(arr));
