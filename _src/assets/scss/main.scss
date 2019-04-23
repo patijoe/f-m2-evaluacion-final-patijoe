@@ -19,7 +19,8 @@ body {
 .container {
 	display: flex;
 	justify-content: space-between;
-	margin-left: 50px;
+	padding-left: 50px;
+	border: 1px solid white;
 	@media all and (width:768px) {
 		margin: 100px 200px;
 	}
@@ -28,7 +29,7 @@ body {
 .list_block {
 	flex-grow: 1;
 	margin-left: 20px;
-	border: 1px solid white;
+	border-left: 1px solid white;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
