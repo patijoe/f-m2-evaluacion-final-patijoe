@@ -4,6 +4,8 @@ const field = document.querySelector('.field');
 const btn = document.querySelector('.btn');
 const list = document.querySelector('.list');
 const listFav = document.querySelector('.list__favorites');
+// Creo array favorites donde se almacenan las selecionadas
+let favorites = [];
 
 
 function read () {
@@ -13,20 +15,13 @@ function read () {
   .then(response => response.json())
   .then(data => {
    
-    // console.log('_^_', data);
-    // let filteredTitles = [];
-    // for (let i = 0; i<data.length; i++) {
-    //   const title = data[i].show.name;
-    //   if (title.match(field.value)) {
-    //     filteredTitles.push(data[i].show.name);
-    //   }
-    // }
     createElement(data);
 
     const itemSelected = document.querySelectorAll('.item__list');
     for (let i = 0; i < itemSelected.length; i++) {
       
       itemSelected[i].addEventListener('click', select);
+      // Se usa esta estructura cuando al meter la función en un addEventListener, hay que introducir un parámetro
       itemSelected[i].addEventListener('click', () => {createElementFavorite(favorites)});
     }
   });
@@ -47,7 +42,6 @@ function createElement (arr) {
 
     // Creo contenido de la imagen
     const newImgContent = arr[i].show.image;
-    // console.log('__**__', newImgContent);
     if (newImgContent === null) {
       newImg.src = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
     } else {
@@ -56,7 +50,6 @@ function createElement (arr) {
 
     // Creo contenido del título
     const newTextContent = document.createTextNode(arr[i].show.name);
-    // console.log('___^___', newTextContent);
 
     // Meto cada elemento donde coresponde
     newTitle.appendChild(newTextContent);
@@ -72,7 +65,7 @@ function createElementFavorite (arr) {
   removeIniFav ()
   
   for (let i = 0; i<arr.length; i++) {
-    // Creo elementos
+    // Creo elementos a partir del array favorites, que tiene almacenado el objeto SeriesInfo
     const newItemFav = document.createElement('li');
     newItemFav.classList.add ('item__list-fav');
     const newImgFav = document.createElement('img');
@@ -80,9 +73,10 @@ function createElementFavorite (arr) {
     const newTitleFav = document.createElement('h2');
     newTitleFav.classList.add('item__title-fav');
 
-    // Creo contenido de la imagen
-    const newImgContentFav = arr[i].lastChild.currentSrc;
-    // console.log('__**__', newImgContent);
+    // Creo contenido de la imagen a partir del array favorites y del objeto seriesInfo que contien
+    const newImgContentFav = arr[i].img;
+    console.log('__**__', newImgContentFav);
+
     if (newImgContentFav === null) {
       newImgFav.src = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
     } else {
@@ -90,7 +84,7 @@ function createElementFavorite (arr) {
     }
 
     // Creo contenido del título
-    const newTextContentFav = document.createTextNode(arr[i].innerText);
+    const newTextContentFav = document.createTextNode(arr[i].name);
 
     // Meto cada elemento donde coresponde
     newTitleFav.appendChild(newTextContentFav);
@@ -101,17 +95,20 @@ function createElementFavorite (arr) {
  
 }
 
-// Creo array favorites donde se almacenan las selecionadas
-let favorites = [];
-
 function select (event) {
   // Origen del evento
-  let culpable = event.currentTarget;
+  const culpable = event.currentTarget;
   // al culpable le cambio la clase
   culpable.classList.toggle('item__list2');
-  // Añado culpable a favorites
-  favorites.push(culpable);
-  console.dir(favorites);
+
+  // Meto title/img en el objeto
+  const seriesInfo = {};
+
+  seriesInfo.name = culpable.querySelector('.item__title').innerHTML;
+  seriesInfo.img = culpable.querySelector('.item__img').src;
+
+  // Añado el objeto seriesInfo a favorites
+  favorites.push(seriesInfo);
 }
 
 // Función que me elimina la busqueda anterior
