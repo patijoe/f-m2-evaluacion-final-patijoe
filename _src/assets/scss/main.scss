@@ -32,8 +32,6 @@ body {
 	border-left: 1px solid white;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-
 }
 
 .list {
@@ -49,6 +47,10 @@ body {
 		grid-template-columns: 1fr 1fr 1fr;
 	}
 }
+
+// .item__day {
+// 	display: none;
+// }
 
 .item__list {
 	width: 320px;
